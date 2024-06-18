@@ -1,3 +1,3 @@
 # bookbot
 
-my first commit
+my first project
