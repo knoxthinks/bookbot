@@ -1,4 +1,5 @@
 # my solution
+book_path = 'books/frankenstein.txt'
 def main():
     with open('books/frankenstein.txt') as f:
 
@@ -8,27 +9,30 @@ def main():
 if __name__ == "__main__":
     main()
 
+print(f"--- Being report of {book_path} ---")
 def count():
     words = len(main().split())
-    print(f"{words} words found in the document")
+    print(f"{words} words found in the document\n")
 
 count()
 
 def dicts():
-    book_path = "books/frankenstein.txt"
+    # book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
     lowercased = text.lower()
     answer = {}
     for char in lowercased:
-        if char in answer:
-            answer[char] += 1
-        else:
-            answer[char] = 1
-    print(answer)
-
+        if char.isalpha(): 
+            if char in answer:
+                answer[char] += 1
+            else:
+                answer[char] = 1
+    # print(answer)
+    # Convert dictionary to a list of tuples and sort by the second item in each tuple (the count)
+    sorted_counts = sorted(answer.items(), key=lambda item: item[1], reverse=True)
         # Print each character and its count on a new line
-    for char, count in answer.items():
-        print(f"'{char}': {count}")
+    for char, count in sorted_counts:
+        print(f"The' {char}' character was found {count} times")
 
 
 def get_book_text(path):
@@ -36,6 +40,8 @@ def get_book_text(path):
         return f.read()
 
 dicts()
+
+print('--- End report ---')
 # This was boot.dev solution
 
 # def main():
